@@ -1,11 +1,16 @@
-import express from "express";
-import {
+const express = require("express");
+const validateBody = require("../helpers/validateBody");
+const {
+  createContactSchema,
+  updateContactSchema,
+} = require("../schemas/contactsSchemas");
+const {
   getAllContacts,
   getOneContact,
   deleteContact,
   createContact,
   updateContact,
-} from "../controllers/contactsControllers.js";
+} = require("../controllers/contactsControllers");
 
 const contactsRouter = express.Router();
 
@@ -15,8 +20,8 @@ contactsRouter.get("/:id", getOneContact);
 
 contactsRouter.delete("/:id", deleteContact);
 
-contactsRouter.post("/", createContact);
+contactsRouter.post("/", validateBody(createContactSchema), createContact);
 
-contactsRouter.put("/:id", updateContact);
+contactsRouter.put("/:id", validateBody(updateContactSchema), updateContact);
 
-export default contactsRouter;
+module.exports = contactsRouter;

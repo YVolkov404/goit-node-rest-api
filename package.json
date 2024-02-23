@@ -1,10 +1,17 @@
 {
   "name": "goit-node-rest-api",
+  "version": "1.0.0",
+  "description": "goit-fson90-node-hw",
+  "private": "true",
+  "homepage": "https://github.com/YVolkov404/goit-node-rest-api",
+  "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "node ./app.js",
-    "dev": "nodemon ./app.js"
+    "start": "node app",
+    "dev": "nodemon app"
   },
+  "author": "<sir.volkov@outlook.com>",
+  "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.18.2",
