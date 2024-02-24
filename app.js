@@ -29,7 +29,7 @@ app.use((err, req, res) => {
 mongoose
   .connect(DB_HOST)
   .then(() => {
-    console.log("Connected!");
+    console.log("Database connection successful!");
     app.listen(PORT, () => {
       console.log("Server is running. Use our API on port: 3000");
     });
