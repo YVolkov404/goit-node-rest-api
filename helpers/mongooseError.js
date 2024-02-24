@@ -1,4 +1,4 @@
-const mongooseError = (error, data, next) => {
+const mongooseError = (error, next) => {
   error.status = 400;
   next();
 };

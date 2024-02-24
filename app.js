@@ -7,7 +7,7 @@ const { default: mongoose } = require("mongoose");
 
 dotenv.config();
 
-const { DB_HOST, PORT } = process.env;
+const { DB_HOST } = process.env;
 
 const app = express();
 
@@ -30,7 +30,7 @@ mongoose
   .connect(DB_HOST)
   .then(() => {
     console.log("Database connection successful!");
-    app.listen(PORT, () => {
+    app.listen(3000, () => {
       console.log("Server is running. Use our API on port: 3000");
     });
   })
