@@ -18,7 +18,7 @@ async function getContactById(id) {
 async function removeContact(id) {
   const response = await listContacts();
   const index = response.findIndex((res) => res.id === id);
-  index === -1 ? null : undefined;
+  if (index === -1) return null;
   const [removedContact] = response.splice(index, 1);
   await fs.writeFile(contactsPath, JSON.stringify(response, null, 2));
   return removedContact;
@@ -38,7 +38,7 @@ async function addContact(data) {
 async function updateContactById(id, data) {
   const response = await listContacts();
   const index = response.findIndex((res) => res.id === id);
-  index === -1 ? null : undefined;
+  if (index === -1) return null;
   response[index] = { id, ...data };
   await fs.writeFile(contactsPath, JSON.stringify(response, null, 2));
   return response[index];
