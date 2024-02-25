@@ -1,7 +1,7 @@
-import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
-import httpStatus from "../helpers/httpStatus.js";
-import { User } from "../models/index.js";
+const jwt = require("jsonwebtoken");
+const dotenv = require("dotenv");
+const httpStatus = require("../helpers/httpStatus.js");
+const { User } = require("../models/index.js");
 
 dotenv.config();
 const { SECRET_KEY } = process.env;

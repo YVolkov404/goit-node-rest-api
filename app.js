@@ -7,7 +7,6 @@ const contactsRouter = require("./routes/contactsRouter");
 const authRouter = require("./routes/authRouter");
 
 dotenv.config();
-
 const { DB_HOST } = process.env;
 
 const app = express();
