@@ -1,7 +1,7 @@
 const Contacts = require("../../models/contacts");
 const httpStatus = require("../../helpers/httpStatus");
 
-const updateFavorite = async (req, res) => {
+const updateFavorite = async (req, res, next) => {
   const { id } = req.params;
   const data = await Contacts.findByIdAndUpdate(id, req.body, { new: true });
 

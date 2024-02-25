@@ -7,7 +7,7 @@ const { User } = require("../../models/index");
 dotenv.config();
 const { SECRET_KEY } = process.env;
 
-const login = async (req, res) => {
+const login = async (req, res, next) => {
   const { email, password } = req.body;
 
   const emailAudit = await User.findOne({ email });
