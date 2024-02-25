@@ -10,7 +10,7 @@ const {
   deleteContact,
   createContact,
   updateContact,
-} = require("../controllers/contactsControllers");
+} = require("../controllers/index");
 const isValid = require("../helpers/validateObjectId");
 
 // ---------------------------------------------------
