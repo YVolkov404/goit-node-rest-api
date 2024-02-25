@@ -10,23 +10,30 @@ const {
   deleteContact,
   createContact,
   updateContact,
-} = require("../controllers/index");
+} = require("../controllers/contacts/index");
 const isValid = require("../helpers/validateObjectId");
+const auth = require("../helpers/auth");
 
 // ---------------------------------------------------
 
 const contactsRouter = express.Router();
 
-contactsRouter.get("/", getAllContacts);
+contactsRouter.get("/", auth, getAllContacts);
 
-contactsRouter.get("/:id", isValid, getOneContact);
+contactsRouter.get("/:id", auth, isValid, getOneContact);
 
-contactsRouter.delete("/:id", isValid, deleteContact);
+contactsRouter.delete("/:id", auth, isValid, deleteContact);
 
-contactsRouter.post("/", validateBody(createContactSchema), createContact);
+contactsRouter.post(
+  "/",
+  auth,
+  validateBody(createContactSchema),
+  createContact
+);
 
 contactsRouter.put(
   "/:id",
+  auth,
   isValid,
   validateBody(updateContactSchema),
   updateContact
@@ -34,6 +41,7 @@ contactsRouter.put(
 
 contactsRouter.patch(
   "/:id/favorite",
+  auth,
   isValid,
   validateBody(updateContactSchema),
   updateContact

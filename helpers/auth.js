@@ -1,0 +1,30 @@
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+import httpStatus from "../helpers/httpStatus.js";
+import { User } from "../models/index.js";
+
+dotenv.config();
+const { SECRET_KEY } = process.env;
+
+const auth = async (req, next) => {
+  const { authorization = "" } = req.headers;
+  const [bearer, token] = authorization.split(" ");
+
+  bearer !== "Bearer" ? httpStatus(401) : httpStatus(200);
+
+  try {
+    const { id } = jwt.verify(token, SECRET_KEY);
+    const user = await User.findById(id);
+
+    !user || !user.token || user.token !== token
+      ? httpStatus(401)
+      : httpStatus(200);
+
+    req.user = user;
+    next();
+  } catch (error) {
+    next(httpStatus(401));
+  }
+};
+
+module.exports = auth;
