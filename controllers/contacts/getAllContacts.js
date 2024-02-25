@@ -1,5 +1,5 @@
-const Contacts = require("../models/contacts");
-const httpStatus = require("../helpers/httpStatus");
+const Contacts = require("../../models/contacts");
+const httpStatus = require("../../helpers/httpStatus");
 
 const getAllContacts = async (res) => {
   const data = await Contacts.find({}, "-updateAt");

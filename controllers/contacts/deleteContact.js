@@ -1,6 +1,5 @@
-const Contacts = require("../models/contacts");
-const httpStatus = require("../helpers/httpStatus");
-
+const Contacts = require("../../models/contacts");
+const httpStatus = require("../../helpers/httpStatus");
 
 const deleteContact = async (req, res) => {
   const { id } = req.params;

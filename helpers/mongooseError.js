@@ -1,5 +1,7 @@
 const mongooseError = (error, next) => {
-  error.status = 400;
+  const { name, code } = error;
+  const status = name === "ServerError" && code === 11000 ? 409 : 400;
+  error.status = status;
   next();
 };
 

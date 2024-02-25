@@ -1,5 +1,5 @@
-const Contacts = require("../models/contacts");
-const httpStatus = require("../helpers/httpStatus");
+const Contacts = require("../../models/contacts");
+const httpStatus = require("../../helpers/httpStatus");
 
 const createContact = async (req, res) => {
   const data = await Contacts.create(req.body);
