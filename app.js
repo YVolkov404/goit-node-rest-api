@@ -3,8 +3,8 @@ const morgan = require("morgan");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
-const contactsRouter = require("./routes/contactsRouter");
-const authRouter = require("./routes/authRouter");
+const contactsRouter = require("./routes/api/contactsRouter");
+const authRouter = require("./routes/api/authRouter");
 
 dotenv.config();
 const { DB_HOST, PORT } = process.env;

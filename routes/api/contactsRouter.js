@@ -1,18 +1,18 @@
 const express = require("express");
-const validateBody = require("../helpers/validateBody");
+const validateBody = require("../../helpers/validateBody");
 const {
   createContactSchema,
   updateContactSchema,
-} = require("../schemas/contactsSchemas");
+} = require("../../schemas/contactsSchemas");
 const {
   getAllContacts,
   getOneContact,
   deleteContact,
   createContact,
   updateContact,
-} = require("../controllers/contacts/index");
-const isValid = require("../helpers/validateObjectId");
-const auth = require("../helpers/auth");
+} = require("../../controllers/contacts/index");
+const isValid = require("../../helpers/validateObjectId");
+const auth = require("../../helpers/auth");
 
 // ---------------------------------------------------
 

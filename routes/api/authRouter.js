@@ -1,13 +1,13 @@
 const express = require("express");
-const validateBody = require("../helpers/validateBody.js");
+const validateBody = require("../../helpers/validateBody.js");
 const {
   current,
   login,
   register,
   logout,
-} = require("../controllers/auth/index.js");
-const auth = require("../helpers/auth.js");
-const { loginSchema, registerSchema } = require("../models/index.js");
+} = require("../../controllers/auth/index.js");
+const auth = require("../../helpers/auth.js");
+const { loginSchema, registerSchema } = require("../../models/index.js");
 
 const authRouter = express.Router();
 
