@@ -1,6 +1,5 @@
 const dotenv = require("dotenv");
 const httpStatus = require("../../helpers/httpStatus");
-const { uid } = require("uid");
 const sendUserEmail = require("../../helpers/nodemailer");
 const { User } = require("../../models/index");
 
