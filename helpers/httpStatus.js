@@ -1,10 +1,11 @@
 const messageList = {
   200: "OK",
   201: "Created",
+  202: "Accepted",
   400: "ID not valid",
   401: "Unauthorized",
   404: "Not Found",
-  409: "Email already in use"
+  409: "Email already in use",
 };
 
 const httpStatus = (status, message = messageList[status]) => {

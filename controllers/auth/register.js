@@ -1,27 +1,28 @@
 const bcrypt = require("bcrypt");
-const gravatar = require("gravatar");
+const jwt = require("jsonwebtoken");
+const dotenv = require("dotenv");
 const httpStatus = require("../../helpers/httpStatus");
 const { User } = require("../../models/index");
 
-const register = async (req, res, next) => {
+dotenv.config();
+const { SECRET_KEY } = process.env;
+
+const login = async (req, res, next) => {
   const { email, password } = req.body;
 
-  const emailAudit = await User.findOne({ email });
-  !emailAudit ? httpStatus(409) : httpStatus(200);
+  const user = await User.findOne({ email });
+  !user ? httpStatus(401) : httpStatus(200);
 
-  const passwordHash = await bcrypt.hash(password, 10);
-  const avatarURL = gravatar.url(email);
+  const passwordAudit = await bcrypt.compare(password, user.password);
+  !passwordAudit ? httpStatus(401) : httpStatus(200);
 
-  const newUser = await User.create({
-    ...req.body,
-    password: passwordHash,
-    avatarURL,
-  });
+  const payload = { id: user._id };
 
-  res.json({
-    email: newUser.email,
-    subscription: newUser.subscription,
-  });
+  const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "48h" });
+  await User.findByIdAndUpdate(user._id, { token });
+  const { subscription } = user;
+
+  res.json({ token, user: { email, subscription } });
 };
 
-module.exports = register;
+module.exports = login;
