@@ -9,7 +9,7 @@ const {
 } = require("../../controllers/auth/index.js");
 const auth = require("../../helpers/auth.js");
 const { loginSchema, registerSchema } = require("../../models/index.js");
-const upload = require("../../helpers/upload.js");
+const uploads = require("../../helpers/uploads.js");
 
 const authRouter = express.Router();
 
@@ -21,6 +21,6 @@ authRouter.post("/register", validateBody(registerSchema), register);
 
 authRouter.post("/logout", auth, logout);
 
-authRouter.patch("/avatars", auth, upload.single("avatar"), avatar);
+authRouter.patch("/avatars", auth, uploads.single("avatar"), avatar);
 
 module.exports = authRouter;

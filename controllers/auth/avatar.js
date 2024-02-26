@@ -2,7 +2,6 @@ const path = require("path");
 const fs = require("fs/promises");
 const Jimp = require("jimp");
 const { User } = require("../../models/index");
-const { ctrlWrapper } = require("../../helpers/ctrlWrapper");
 
 const avatarsDir = path.join(__dirname, "../", "../", "public", "avatars");
 
@@ -21,9 +20,10 @@ const avatar = async (req, res) => {
   const avatarURL = path.join("avatars", filename);
 
   await User.findByIdAndUpdate(_id, { avatarURL });
-  res.status(200).json({
+
+  res.json({
     avatarURL,
   });
 };
 
-module.exports = ctrlWrapper(avatar);
+module.exports = avatar;
