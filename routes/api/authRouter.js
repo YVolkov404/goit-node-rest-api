@@ -29,8 +29,8 @@ authRouter.post("/logout", auth, logout);
 
 authRouter.patch("/avatars", auth, uploads.single("avatar"), avatar);
 
-authRouter.get("/audit/:token", emailAudit);
+authRouter.get("/verify/:verificationToken", emailAudit);
 
-authRouter.post("/audit", validateBody(emailAuditSchema), resentEmailAudit);
+authRouter.post("/verify", validateBody(emailAuditSchema), resentEmailAudit);
 
 module.exports = authRouter;

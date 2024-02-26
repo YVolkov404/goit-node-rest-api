@@ -25,11 +25,11 @@ const userSchema = Schema(
       type: String,
       default: "",
     },
-    audit: {
+    verify: {
       type: Boolean,
       default: false,
     },
-    tokenAudit: {
+    verificationToken: {
       type: String,
       default: "",
       required: [true, "Token verification required"],
