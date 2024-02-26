@@ -10,18 +10,19 @@ const { SECRET_KEY } = process.env;
 const login = async (req, res, next) => {
   const { email, password } = req.body;
 
-  const emailAudit = await User.findOne({ email });
-  !emailAudit ? httpStatus(401) : httpStatus(200);
+  const user = await User.findOne({ email });
+  !user ? httpStatus(401) : httpStatus(200);
 
-  const passwordAudit = await bcrypt.compare(password, emailAudit.password);
+  const passwordAudit = await bcrypt.compare(password, user.password);
   !passwordAudit ? httpStatus(401) : httpStatus(200);
 
-  const payload = { id: emailAudit._id };
+  const payload = { id: user._id };
 
   const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "48h" });
-  await User.findByIdAndUpdate(emailAudit._id, { token });
+  await User.findByIdAndUpdate(user._id, { token });
+  const { subscription } = user;
 
-  res.json({ token });
+  res.json({ token, user: { email, subscription } });
 };
 
 module.exports = login;
