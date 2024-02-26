@@ -7,8 +7,8 @@ dotenv.config();
 const { SECRET_KEY } = process.env;
 
 const auth = async (req, res, next) => {
-  const { authorization = "" } = req.headers;
-  const [bearer, token] = authorization.split(" ");
+  const { auth = "" } = req.headers;
+  const [bearer, token] = auth.split(" ");
 
   bearer !== "Bearer" ? httpStatus(401) : httpStatus(200);
 
@@ -17,8 +17,8 @@ const auth = async (req, res, next) => {
     const user = await User.findById(id);
 
     !user || !user.token || user.token !== token
-      ? httpStatus(401)
-      : httpStatus(200);
+      ? next(httpStatus(401))
+      : next(httpStatus(200));
 
     req.user = user;
     next();
