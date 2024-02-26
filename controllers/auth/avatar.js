@@ -22,7 +22,7 @@ const avatar = async (req, res) => {
   await User.findByIdAndUpdate(_id, { avatarURL });
 
   res.json({
-    avatarURL,
+    avatarURL: avatarURL,
   });
 };
 
